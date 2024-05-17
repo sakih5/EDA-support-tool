@@ -1,0 +1,5 @@
+pip install streamlit_plotly_events
+pip install pandas
+pip install numpy
+pip install matplotlib
+pip install plotly

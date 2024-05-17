@@ -13,6 +13,7 @@ TARGET_VARIABLE = ['SalePrice', 'SalePrice_log']
 
 # タイトル
 st.title('深掘り分析アプリ')
+st.write("1．目的変数との関係性を確認する")
 
 # データの読み込み
 df = pd.read_excel('質的変数→量的変数_train.xlsx')
@@ -40,15 +41,8 @@ if x_col and y_col:
         fig = px.box(df, x=x_col, y=y_col, points="all", hover_name=PRIMARY_KEY)
 else:
     st.info("目的変数と説明変数を選択してください")
-# elif x_col and y_col:
-#     if is_scatter == 'Yes':
-#         fig = px.scatter(df, x=x_col, y=y_col, hover_name=PRIMARY_KEY)
-#     elif is_scatter == 'No(箱ひげ図が表示)':
-#         fig = px.box(df, x=x_col, y=y_col, points="all", hover_name=PRIMARY_KEY)
-# st.plotly_chart(fig)
 
 # 散布図をクリックして選択した場合の処理
-# Streamlit Plotly Eventを使用してクリックイベントをキャプチャ
 selected_points = plotly_events(fig)
 
 # クリックされたポイントの情報を表示
@@ -71,16 +65,8 @@ if selected_points:
 else:
     st.info("散布図内の気になるプロットをクリックしてください")
 
-# selected_data = None
-# selected_indices = st.session_state.get('selected_indices', [])
-# if selected_indices:
-#     selected_df = df.iloc[selected_indices, :]
-#     selected_df_rare = df_rare.iloc[selected_indices, :]
-#     df_c = pd.concat([selected_df, selected_df_rare])
-#     st.write('Selected Data:')
-#     st.write(df_c)
-
-# 目的変数の選択
+# 1変数の可視化
+st.write("2．1変数の分布を確認する")
 col5, col6 = st.columns(2)
 with col5:
     column = st.selectbox("列を選択してください", df.columns)
